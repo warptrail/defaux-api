@@ -15,6 +15,9 @@
   "keywords": [
     "defaux"
   ],
+  "engines": {
+    "node": "12.18.1"
+  },
   "author": "warptrail",
   "license": "ISC",
   "dependencies": {
