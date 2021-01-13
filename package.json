@@ -18,7 +18,7 @@
     "defaux"
   ],
   "engines": {
-    "node": "12.18.1"
+    "node": "14.15.1"
   },
   "author": "warptrail",
   "license": "ISC",

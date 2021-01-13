@@ -17,3 +17,4 @@ TRUNCATE
 COMMIT;
 
 -- psql -U warptrail -d defaux -f ./seeds/seed.tables.sql
+
