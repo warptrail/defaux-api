@@ -1,0 +1,4 @@
+ALTER TABLE "event"
+  DROP COLUMN IF EXISTS user_id;
+
+DROP TABLE IF EXISTS "user";

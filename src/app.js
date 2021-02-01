@@ -31,6 +31,7 @@ const errorHandler = require("./middleware/error-handler");
 const authRouter = require("./auth/auth-router");
 const userRouter = require("./user/user-router");
 const widgetRouter = require("./widget/widget-router");
+const eventRouter = require("./event/event-router");
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/widget", widgetRouter);
+app.use("/api/event", eventRouter);
 
 app.use(errorHandler);
 
