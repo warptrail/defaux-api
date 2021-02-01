@@ -6,6 +6,18 @@ const EventService = {
   getSpecificEvent(db, id) {
     return db.from('event').select('*').where('id', id).first();
   },
+
+  createEvent(db, newEvent) {
+    return db.insert(newEvent).into('event').returning('*');
+  },
+
+  deleteEvent(db, id) {
+    return db('event').where({ id }).delete();
+  },
+
+  updateEvent(db, id, updates) {
+    return db('event').where({ id }).update(updates).returning('info');
+  },
 };
 
 module.exports = EventService;
