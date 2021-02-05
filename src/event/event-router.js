@@ -41,11 +41,13 @@ eventRouter
       // Set the user_id in the new event
       newEvent.user_id = req.user.id;
 
+      // add the event to the database
       const insertEvent = await EventService.createEvent(
         req.app.get('db'),
         newEvent
       );
 
+      // response the new event created
       res.status(201).json(insertEvent);
     } catch (error) {
       console.log(error);
