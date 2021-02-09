@@ -26,8 +26,21 @@ eventRouter
   })
   .post(jsonBodyParser, async (req, res, next) => {
     try {
-      const { date, start_timestamp, end_timestamp, info, category } = req.body;
-      const newEvent = { date, start_timestamp, end_timestamp, info, category };
+      const {
+        date,
+        start_timestamp,
+        end_timestamp,
+        info,
+        category_id,
+      } = req.body;
+
+      const newEvent = {
+        date,
+        start_timestamp,
+        end_timestamp,
+        info,
+        category_id,
+      };
 
       // Validate keys all have values
       for (const [key, value] of Object.entries(newEvent))
@@ -94,6 +107,22 @@ eventRouter
       updatedEventInfo
     );
     res.json(updatedEvent);
+  });
+
+//* GET all categories
+eventRouter
+  .route('/category')
+  .all(requireAuth)
+  .get(async (req, res, next) => {
+    try {
+      const allCategories = await EventService.getAllCategories(
+        req.app.get('db'),
+        req.user.id
+      );
+      res.json(allCategories);
+    } catch (error) {
+      console.log(error);
+    }
   });
 
 module.exports = eventRouter;
