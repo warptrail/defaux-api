@@ -37,6 +37,25 @@ const EventService = {
       .where('user_id', user_id)
       .orderBy('encoded_name');
   },
+
+  createCategory(db, newCategory) {
+    return db.insert(newCategory).into('category').returning('*');
+  },
+
+  getSpecificCategory(db, id) {
+    return db.from('category').select('*').where('category_id', id).first();
+  },
+
+  deleteCategory(db, id) {
+    return db('category').where({ id }).delete();
+  },
+
+  updateCategory(db, id, updates) {
+    return db('category')
+      .where('category_id', id)
+      .update(updates)
+      .returning('*');
+  },
 };
 
 module.exports = EventService;

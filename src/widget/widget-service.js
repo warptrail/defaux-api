@@ -33,7 +33,7 @@ const WidgetService = {
   },
 
   updateWidget(db, id, updates) {
-    return db('widget').where({ id }).update(updates).returning('name');
+    return db('widget').where({ id }).update(updates).returning('*');
   },
 };
 
