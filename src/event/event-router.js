@@ -26,18 +26,11 @@ eventRouter
   })
   .post(jsonBodyParser, async (req, res, next) => {
     try {
-      const {
-        date,
-        start_timestamp,
-        end_timestamp,
-        info,
-        category_id,
-      } = req.body;
+      const { date, timestamp, info, category_id } = req.body;
 
       const newEvent = {
         date,
-        start_timestamp,
-        end_timestamp,
+        timestamp,
         info,
         category_id,
       };
@@ -100,21 +93,29 @@ eventRouter
     try {
       const { id } = req.params;
 
-      const {
-        date,
-        start_timestamp,
-        end_timestamp,
-        info,
-        category_id,
-      } = req.body;
+      const { date, timestamp, info, category_id } = req.body;
 
       const updatedEventObject = {
         date,
-        start_timestamp,
-        end_timestamp,
+        timestamp,
         info,
         category_id,
       };
+
+      console.log(updatedEventObject);
+
+      // check if valid timestamp
+      const isValidTimestamp =
+        new Date(updatedEventObject.timestamp).getTime() > 0;
+      if (!isValidTimestamp) {
+        return res.status(400).json({
+          error: {
+            message: `Not a valid timestamp - isValidTimestamp: ${new Date(
+              updatedEventObject.timestamp
+            )}`,
+          },
+        });
+      }
 
       // Check to see if any values have been updated, otherwise no need to fetch Patch
       const numberOfValues = Object.values(updatedEventObject).filter(Boolean)
@@ -146,7 +147,7 @@ eventRouter
         id,
         updatedEventObject
       );
-      res.status(204).json(updatedEvent);
+      res.json(updatedEvent);
     } catch (error) {
       console.log(error);
     }
@@ -275,9 +276,23 @@ eventRouter
         updatedCategoryObject
       );
       res.json(updatedCategory);
+      //
     } catch (error) {
       console.log(error);
     }
   });
+
+eventRouter.route('/testing').patch(jsonBodyParser, (req, res, next) => {
+  try {
+    const body = req.body;
+    const bodyLength = Object.keys(body).length;
+
+    const numberOfValues = Object.values(body).filter(Boolean).length;
+
+    res.send(`${bodyLength} - ${numberOfValues}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = eventRouter;

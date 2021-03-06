@@ -26,12 +26,10 @@ TRUNCATE
     (2, 'cigar', 'death stick', 'smoking', '#000');
 
 
-  INSERT INTO "event" ("date", "start_timestamp", "end_timestamp", "info", "category_id", "user_id")
+  INSERT INTO "event" ("date", "timestamp", "info", "category_id", "user_id")
   VALUES
-    ('2021-01-01', '2021-01-01T00:00:00.001Z', '2021-01-01T23:59:59.999Z', 'New Years Day', 1, 1),
-    ('2021-01-06', '2021-01-06T12:32:15.001Z', '2021-01-06T13:59:59.999Z', 'Insurrection Day', 2, 2),
-    ('2021-02-06', '2021-01-06T12:32:15.001Z', '2021-01-06T13:59:59.999Z', 'Rawr Day', 1, 1),
-    ('2021-02-09', '2021-01-06T12:32:15.001Z', '2021-01-06T13:59:59.999Z', 'Rawr Day', 2, 1);
+    ('2021-01-01', '2021-01-01T00:00:00.001Z', 'New Years Day', 1, 1),
+    ('2021-02-06', '2021-01-06T12:32:15.001Z', 'Harrys birthday', 1, 1);
     
 
 COMMIT;

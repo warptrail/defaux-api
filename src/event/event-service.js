@@ -27,7 +27,7 @@ const EventService = {
   },
 
   updateEvent(db, id, updates) {
-    return db('event').where({ id }).update(updates).returning('info');
+    return db('event').where({ id }).update(updates).returning('*');
   },
 
   getAllCategories(db, user_id) {
