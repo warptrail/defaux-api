@@ -28,6 +28,12 @@ eventRouter
     try {
       const { date, timestamp, info, category_id } = req.body;
 
+      if (Object.keys(req.body).length !== 4) {
+        return res.status(400).json({
+          error: 'req.body not correct length',
+        });
+      }
+
       const newEvent = {
         date,
         timestamp,
@@ -36,13 +42,13 @@ eventRouter
       };
 
       // Validate keys all have values
-      for (const [key, value] of Object.entries(newEvent))
-        if (value === null) {
-          logger.error(`Missing ${key} in request body`);
-          return res.status(400).json({
-            error: `Missing ${key} in request body`,
-          });
-        }
+      // for (const [key, value] of Object.entries(newEvent))
+      //   if (value === null) {
+      //     console.error(`Missing ${key} in request body`);
+      //     return res.status(400).json({
+      //       error: `Missing ${key} in request body`,
+      //     });
+      //   }
 
       // Set the user_id in the new event
       newEvent.user_id = req.user.id;

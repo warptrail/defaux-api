@@ -22,8 +22,7 @@ TRUNCATE
   INSERT INTO "category" ("user_id", "real_name", "encoded_name", "icon", "color")
   VALUES
     (1, 'cigar', 'death stick', 'smoking', '#000'),
-    (1, 'soda', 'protop', 'soda', '#324'),
-    (2, 'cigar', 'death stick', 'smoking', '#000');
+    (1, 'soda', 'protop', 'soda', '#324');
 
 
   INSERT INTO "event" ("date", "timestamp", "info", "category_id", "user_id")

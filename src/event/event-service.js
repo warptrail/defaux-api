@@ -47,7 +47,7 @@ const EventService = {
   },
 
   deleteCategory(db, id) {
-    return db('category').where({ id }).delete();
+    return db('category').where('category_id', id).delete();
   },
 
   updateCategory(db, id, updates) {
